@@ -1,0 +1,5 @@
+{
+  "name": "Firebase Auth Pro 2",
+  "description": "A professional-grade authentication system using Firebase, featuring real-time state management, sleek Tailwind CSS UI, and secure login/signup flows.",
+  "requestFramePermissions": []
+}
