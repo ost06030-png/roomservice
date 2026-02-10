@@ -8,9 +8,9 @@ import {
   signInWithPopup,
   AuthError
 } from 'firebase/auth';
-import { auth, googleProvider } from './services/firebase';
-import { Layout } from './components/Layout';
-import { Dashboard } from './components/Dashboard';
+import { auth, googleProvider } from './services/firebase.ts';
+import { Layout } from './components/Layout.tsx';
+import { Dashboard } from './components/Dashboard.tsx';
 
 type AuthMode = 'login' | 'signup';
 

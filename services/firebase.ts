@@ -1,10 +1,12 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
+  // Firebase 전용 API 키를 복구합니다. 
+  // process.env.API_KEY는 Gemini API 전용이므로 Firebase 설정에 사용하면 인증 오류가 발생합니다.
   apiKey: "AIzaSyDpaMpA7G6sOdI8lXpq064ufwmeYaV2nMc",
   authDomain: "nami-9e436.firebaseapp.com",
   projectId: "nami-9e436",
@@ -20,12 +22,16 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-// Analytics initialization
+// Analytics initialization with environment support check
 let analytics = null;
-try {
-  analytics = getAnalytics(app);
-} catch (e) {
-  console.warn("Analytics initialization failed:", e);
-}
+isSupported().then(supported => {
+  if (supported) {
+    try {
+      analytics = getAnalytics(app);
+    } catch (e) {
+      console.warn("Analytics initialization failed:", e);
+    }
+  }
+});
 
 export { auth, db, googleProvider, analytics };

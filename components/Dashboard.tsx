@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { User, signOut } from 'firebase/auth';
-import { auth } from '../services/firebase';
-import { Board } from './Board';
+import { auth } from '../services/firebase.ts';
+import { Board } from './Board.tsx';
 
 interface DashboardProps {
   user: User;
